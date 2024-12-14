@@ -10,11 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.dev.sebastian.calculator.logic.InputTaker;
+
 public class CalculatorGUI {
     // * Private variables;
     private JFrame window;
     private JPanel display;
     private JPanel keyboard;
+    private InputTaker inputTaker;
 
     public void guiCreator() {
         window = new JFrame("Calculator");
@@ -82,10 +85,12 @@ public class CalculatorGUI {
             keyboard.add(button);
         }
 
+        this.inputTaker = InputTaker.getInstance();
+        
         for (JButton jButton : buttonBox) {
             String t = jButton.getText();
             jButton.addActionListener(e -> {
-                valuesDisplay.setText(t);
+                valuesDisplay.setText(inputTaker.inputsGathering(t));
             });
         }
 
