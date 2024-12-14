@@ -13,13 +13,29 @@ import javax.swing.JTextField;
 import main.java.dev.sebastian.calculator.logic.InputTaker;
 
 public class CalculatorGUI {
+    // Singleton instance
+    private static CalculatorGUI instance;
+
     // * Private variables;
     private JFrame window;
     private JPanel display;
     private JPanel keyboard;
     private InputTaker inputTaker;
 
-    public void guiCreator() {
+    private CalculatorGUI() {
+        guiCreator();
+    }
+
+    public static CalculatorGUI getInstance() {
+        if(instance == null) {
+            instance = new CalculatorGUI();
+        }
+
+        return instance;
+    }
+
+
+    private void guiCreator() {
         window = new JFrame("Calculator");
 
         // * window properties
