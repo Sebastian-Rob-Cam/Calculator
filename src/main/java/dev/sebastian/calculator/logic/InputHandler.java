@@ -1,5 +1,7 @@
 package main.java.dev.sebastian.calculator.logic;
 
+import javax.swing.JTextField;
+
 public class InputHandler {
     // Variables zone
     private static InputHandler instance;
@@ -14,13 +16,9 @@ public class InputHandler {
         }
         return instance;
     }
-    /*
-     * // variables zone
-     * private String input;
-     *
-     * public void takeInput(String str) {
-     * this.input = str;
-     * }
-     *
-     */
+
+    public String appendInput(String input) {
+        this.input += input;
+        return this.input;
+    }
 }

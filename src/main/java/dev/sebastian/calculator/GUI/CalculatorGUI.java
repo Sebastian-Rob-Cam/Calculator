@@ -44,7 +44,7 @@ public class CalculatorGUI {
         container.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         // display section
-        JTextField values = createDisplay(container);
+        JTextField valuesDisplay = createDisplay(container);
 
         // keyboard section
         int[] layoutParameters = { 4, 4, 5, 5 };
@@ -54,7 +54,7 @@ public class CalculatorGUI {
                 "1", "2", "3", "-",
                 ".", "0", "=", "+"
         };
-        container.add(new DefaultKeyboard().keyboardPanelBuilder(layoutParameters, labels));
+        container.add(new DefaultKeyboard().keyboardPanelBuilder(layoutParameters, labels, valuesDisplay));
 
         window.add(container);
         window.setVisible(true);
