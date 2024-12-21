@@ -1,7 +1,5 @@
 package main.java.dev.sebastian.calculator.logic;
 
-import javax.swing.JTextField;
-
 public class InputHandler {
     // Variables zone
     private static InputHandler instance;
