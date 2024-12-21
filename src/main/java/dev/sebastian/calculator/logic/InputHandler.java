@@ -1,17 +1,16 @@
 package main.java.dev.sebastian.calculator.logic;
 
 public class InputHandler {
+    // Variables zone
     private static InputHandler instance;
+    private String input = "";
 
     private InputHandler() {
     };
 
     public static InputHandler getInstance() {
-        try {
+        if (instance == null) {
             instance = new InputHandler();
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
         }
         return instance;
     }
