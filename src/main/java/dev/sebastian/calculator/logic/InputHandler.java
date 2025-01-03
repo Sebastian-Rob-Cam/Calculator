@@ -22,7 +22,7 @@ public class InputHandler {
         return this.input;
     }
 
-    private void handler() {
+    private double handler() {
         char[] inputArray = input.toCharArray();
         double result = 0;
 
@@ -30,16 +30,33 @@ public class InputHandler {
             for (char c : inputArray) {
                 switch (c) {
                     case '+':
-                        double tempAdd = BasicOperations.add(Double.parseDouble(inputArray[0] + ""),
+                        result = BasicOperations.add(Double.parseDouble(inputArray[0] + ""),
                                 Double.parseDouble(inputArray[2] + ""));
 
-                        System.out.println("tempAdd: " + tempAdd);
-                    default:
-                        // return result;
+                        System.out.println("debugAdd: " + result);
+                        break;
+                    case '-':
+                        result = BasicOperations.subtract(Double.parseDouble(inputArray[0] + ""),
+                                Double.parseDouble(inputArray[2] + ""));
+
+                        System.out.println("tempSubtract: " + result);
+                        break;
+                    case '*':
+                        result = BasicOperations.multiply(Double.parseDouble(inputArray[0] + ""),
+                                Double.parseDouble(inputArray[2] + ""));
+
+                        System.out.println("tempMultiply: " + result);
+                        break;
+                    case '/':
+                        result = BasicOperations.divide(Double.parseDouble(inputArray[0] + ""),
+                                Double.parseDouble(inputArray[2] + ""));
+
+                        System.out.println("tempDivide: " + result);
+                        break;
                 }
             }
         }
 
-        // return result;
+        return result;
     }
 }

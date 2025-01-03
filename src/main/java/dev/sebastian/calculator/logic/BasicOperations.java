@@ -1,10 +1,12 @@
 package main.java.dev.sebastian.calculator.logic;
 
 public class BasicOperations {
+    private static double result = 0;
 
     public static double add(double a, double b) {
         System.out.println("running add");
-        return a + b;
+        result = a + b;
+        return result;
     }
 
     public static double subtract(double a, double b) {
