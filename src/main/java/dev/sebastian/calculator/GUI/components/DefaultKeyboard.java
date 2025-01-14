@@ -1,6 +1,7 @@
 package main.java.dev.sebastian.calculator.GUI.components;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -28,8 +29,13 @@ public class DefaultKeyboard implements Keyboard {
 
         for (JButton button : buttonBehaviorBuilder(labels)) {
             button.addActionListener(e -> {
-                String inputTEMP = inputHandler.appendInput(button.getText());
-                display.setText(inputTEMP);
+                String inputTEMP = button.getText();
+                String inputTest = new String();
+                ArrayList<Character> tempList = inputHandler.appendInput(inputTEMP.charAt(0));
+                for (Character character : tempList) {
+                    inputTest += character;
+                }
+                display.setText(inputTest);
             });
             keyboardPanel.add(button);
         }
