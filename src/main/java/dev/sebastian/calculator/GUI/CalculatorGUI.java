@@ -1,6 +1,7 @@
 package main.java.dev.sebastian.calculator.GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -8,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import main.java.dev.sebastian.calculator.GUI.components.DefaultKeyboard;
+import main.java.dev.sebastian.calculator.GUI.components.BasicKeyboard;
 
 public class CalculatorGUI {
     // Singleton instance
@@ -17,6 +18,7 @@ public class CalculatorGUI {
     // * Private variables;
     private JFrame window;
     private JPanel display;
+    private BasicKeyboard basicKeyboard;
 
     private CalculatorGUI() {
         guiCreator();
@@ -43,18 +45,11 @@ public class CalculatorGUI {
         container.setLayout(new BorderLayout(0, 15));
         container.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        // display section
+        // Display to show the values of the keyboards
         JTextField valuesDisplay = createDisplay(container);
-
-        // keyboard section
-        int[] layoutParameters = { 4, 4, 5, 5 };
-        String[] labels = {
-                "7", "8", "9", "/",
-                "4", "5", "6", "*",
-                "1", "2", "3", "-",
-                ".", "0", "=", "+"
-        };
-        container.add(new DefaultKeyboard().keyboardPanelBuilder(layoutParameters, labels, valuesDisplay));
+        // Building basic keyboard section
+        basicKeyboard = new BasicKeyboard();
+        container.add(basicKeyboard.createBasicKeyboard());
 
         window.add(container);
         window.setVisible(true);

@@ -1,75 +1,58 @@
 package main.java.dev.sebastian.calculator.GUI.components;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import main.java.dev.sebastian.calculator.GUI.interfaces.KeyboardTemplate;
-import main.java.dev.sebastian.calculator.logic.InputHandler;
 
-public class DefaultKeyboard implements KeyboardTemplate {
-    private InputHandler inputHandler = InputHandler.getInstance();
+public class BasicKeyboard implements KeyboardTemplate {
+    private ArrayList<JButton> buttonsHolder = new ArrayList<>();
 
-    @Override
-    public JPanel keyboardPanelBuilder(int[] layoutParameters, String[] labels, JTextField display) {
+    // Constructor for the basic keyboard.
+    public JPanel createBasicKeyboard() {
+        // In this array we have the layout parameters for the keyboard.
+        int[] layoutParameters = { 4, 4, 5, 5 };
+        // Labels for the buttons
+        String[] labels = {
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                ".", "0", "=", "+"
+        };
+        // Doing buttons with the labels
+        buttonBuilder(labels);
+        // Calling keyboard builder with the above parameters.
+        return keyboardBuilder(layoutParameters, buttonsHolder);
 
-        validateLayoutParameters(layoutParameters, labels);
-
-        JPanel keyboardPanel = new JPanel();
-
-        // Set the layout for the panel
-        keyboardPanel.setLayout(new GridLayout(
-                layoutParameters[0], // amount of rows
-                layoutParameters[1], // amount of columns
-                layoutParameters[2], // horizontal gaps between buttons
-                layoutParameters[3])); // vertical gaps between buttons
-
-        for (JButton button : buttonBehaviorBuilder(labels)) {
-            button.addActionListener(e -> {
-                String inputTEMP = button.getText();
-                String inputTest = new String();
-                ArrayList<Character> tempList = inputHandler.appendInput(inputTEMP.charAt(0));
-                for (Character character : tempList) {
-                    inputTest += character;
-                }
-                display.setText(inputTest);
-            });
-            keyboardPanel.add(button);
-        }
-
-        return keyboardPanel;
     }
 
     @Override
-    public JButton[] buttonBehaviorBuilder(String[] labels) {
-
-        JButton[] buttons = new JButton[labels.length];
-
-        for (int i = 0; i < labels.length; i++) {
-            String label = labels[i];
+    public void buttonBuilder(String[] labelsParameter) {
+        for (String label : labelsParameter) {
             JButton button = new JButton(label);
-
-            buttons[i] = button;
-        }
-
-        return buttons;
-    }
-
-    private void validateLayoutParameters(int[] layoutParameters, String[] labels) {
-
-        if (layoutParameters.length < 4) {
-            throw new IllegalArgumentException("Layout parameters must contain exactly 4 elements.");
-        }
-
-        int rows = layoutParameters[0];
-        int cols = layoutParameters[1];
-
-        if (rows * cols < labels.length) {
-            throw new IllegalArgumentException("GridLayout is too small for the number of labels provided.");
+            button.setForeground(Color.WHITE);
+            button.setBackground(new Color(51, 51, 51)); // Gris oscuro
+            button.setBorder(BorderFactory.createEmptyBorder());
+            button.setFocusPainted(false);
+            buttonsHolder.add(button);
         }
     }
 
+    @Override
+    public JPanel keyboardBuilder(int[] layoutParameters, ArrayList<JButton> buttons) {
+        JPanel keyboard = new JPanel();
+        keyboard.setLayout(
+                new GridLayout(layoutParameters[0], layoutParameters[1], layoutParameters[2], layoutParameters[3]));
+
+        for (JButton button : buttons) {
+            keyboard.add(button);
+        }
+
+        return keyboard;
+    }
 }
