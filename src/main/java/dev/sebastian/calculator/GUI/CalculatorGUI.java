@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.java.dev.sebastian.calculator.GUI.components.BasicKeyboard;
+import main.java.dev.sebastian.calculator.logic.handlers.ButtonEventHandler;
 
 public class CalculatorGUI {
     // Singleton instance
@@ -50,6 +51,9 @@ public class CalculatorGUI {
         // Building basic keyboard section
         basicKeyboard = new BasicKeyboard();
         container.add(basicKeyboard.createBasicKeyboard());
+
+        // ! Test of button event handler
+        ButtonEventHandler.getInstance().keyboardReader(basicKeyboard.getButtonsHolder());
 
         window.add(container);
         window.setVisible(true);

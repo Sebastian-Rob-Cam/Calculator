@@ -55,4 +55,9 @@ public class BasicKeyboard implements KeyboardTemplate {
 
         return keyboard;
     }
+
+    // Getter for the buttonsHolder
+    public ArrayList<JButton> getButtonsHolder() {
+        return buttonsHolder;
+    }
 }
