@@ -1,6 +1,8 @@
-package main.java.dev.sebastian.calculator.logic;
+package main.java.dev.sebastian.calculator.logic.handlers;
 
 import java.util.ArrayList;
+
+import main.java.dev.sebastian.calculator.logic.BasicOperations;
 
 public class InputHandler {
     // Variables zone
